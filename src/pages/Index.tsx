@@ -138,11 +138,11 @@ const Index = () => {
   const getCurrentExercises = () => exercises[currentDay] || [];
 
   return (
-    <div className="max-w-md mx-auto space-y-4">
+    <div className="max-w-md mx-auto space-y-4 bg-gray-50 min-h-screen">
       {/* Header Info */}
-      <div className="bg-blue-600 text-white p-4 rounded-lg">
-        <h2 className="text-xl font-bold">Today's Workout</h2>
-        <p className="text-blue-100">
+      <div className="bg-gradient-to-br from-blue-600 to-blue-700 text-white p-6 rounded-lg shadow-lg">
+        <h2 className="text-3xl font-extrabold mb-2">Academia Tracker</h2>
+        <p className="text-blue-100 text-lg">
           Treino {currentDay} • Próximo: {getNextDay()}
         </p>
       </div>
@@ -153,7 +153,11 @@ const Index = () => {
           <Button
             key={day}
             variant={currentDay === day ? "default" : "outline"}
-            className={`flex-1 ${currentDay === day ? 'bg-blue-600 hover:bg-blue-700' : ''}`}
+            className={`flex-1 transition-colors ${
+              currentDay === day 
+                ? 'bg-blue-600 hover:bg-blue-700 shadow-md' 
+                : 'hover:bg-blue-50 hover:border-blue-300'
+            }`}
             onClick={() => setCurrentDay(day)}
           >
             Treino {day}
@@ -178,7 +182,7 @@ const Index = () => {
           <DialogTrigger asChild>
             <Button
               variant="outline"
-              className="w-full h-16 border-dashed border-2 text-gray-500 hover:text-gray-700 hover:border-gray-400"
+              className="w-full h-16 border-dashed border-2 text-gray-500 hover:text-gray-700 hover:border-gray-400 hover:bg-gray-50 transition-colors shadow-sm hover:shadow-md"
             >
               <Plus className="w-5 h-5 mr-2" />
               Adicionar Exercício
@@ -196,7 +200,7 @@ const Index = () => {
       {/* Complete Workout Button */}
       {isWorkoutComplete() && (
         <Button
-          className="w-full bg-green-600 hover:bg-green-700 text-white h-12 text-lg font-semibold"
+          className="w-full bg-green-600 hover:bg-green-700 text-white h-12 text-lg font-semibold shadow-lg hover:shadow-xl transition-all"
           onClick={completeWorkout}
         >
           <Check className="w-5 h-5 mr-2" />

@@ -31,10 +31,10 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({
   onDelete
 }) => {
   return (
-    <Card className={`transition-all duration-200 ${
+    <Card className={`transition-all duration-200 shadow-md hover:shadow-lg ${
       exercise.completed 
-        ? 'border-green-500 bg-green-50' 
-        : 'border-gray-200 bg-white hover:shadow-md'
+        ? 'border-green-500 bg-green-50 opacity-70' 
+        : 'border-gray-200 bg-white'
     }`}>
       <CardContent className="p-4">
         <div className="flex items-start justify-between mb-3">
@@ -42,10 +42,10 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({
             <Checkbox
               checked={exercise.completed}
               onCheckedChange={() => onToggleComplete(exercise.id)}
-              className="mt-1"
+              className="mt-1 transition-colors"
             />
-            <h3 className={`font-semibold text-lg ${
-              exercise.completed ? 'line-through text-gray-500' : 'text-gray-900'
+            <h3 className={`font-semibold text-lg text-gray-900 ${
+              exercise.completed ? 'line-through text-gray-500' : ''
             }`}>
               {exercise.name}
             </h3>
@@ -54,7 +54,7 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({
             variant="ghost"
             size="sm"
             onClick={() => onDelete(exercise.id)}
-            className="text-red-500 hover:text-red-700 hover:bg-red-50"
+            className="text-red-500 hover:text-red-700 hover:bg-red-50 transition-colors"
           >
             <Trash2 className="w-4 h-4" />
           </Button>
@@ -70,7 +70,7 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({
               value={exercise.sets}
               onChange={(e) => onUpdate(exercise.id, 'sets', Number(e.target.value))}
               disabled={exercise.completed}
-              className="text-center"
+              className="text-center transition-colors"
               min="1"
             />
           </div>
@@ -83,7 +83,7 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({
               value={exercise.reps}
               onChange={(e) => onUpdate(exercise.id, 'reps', Number(e.target.value))}
               disabled={exercise.completed}
-              className="text-center"
+              className="text-center transition-colors"
               min="1"
             />
           </div>
@@ -96,7 +96,7 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({
               value={exercise.weight}
               onChange={(e) => onUpdate(exercise.id, 'weight', Number(e.target.value))}
               disabled={exercise.completed}
-              className="text-center"
+              className="text-center transition-colors"
               min="0"
               step="0.5"
             />
@@ -112,7 +112,7 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({
             onChange={(e) => onUpdate(exercise.id, 'notes', e.target.value)}
             disabled={exercise.completed}
             placeholder="Anotações sobre o exercício..."
-            className="resize-none"
+            className="resize-none transition-colors"
             rows={2}
           />
         </div>

@@ -42,17 +42,22 @@ const HistoryPage = () => {
   }, []);
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold mb-2">History & Progress</h1>
-        <p className="text-gray-600">Track your workout history and monitor your progress over time.</p>
+    <div className="max-w-4xl mx-auto space-y-6 bg-gray-50 min-h-screen p-4">
+      <div className="bg-gradient-to-br from-blue-600 to-blue-700 text-white p-6 rounded-lg shadow-lg">
+        <h1 className="text-3xl font-extrabold mb-2">History & Progress</h1>
+        <p className="text-blue-100">Track your workout history and monitor your progress over time.</p>
       </div>
       
-      <WorkoutHistory workouts={completedWorkouts.slice(0, 5)} />
-      <ExerciseProgress 
-        completedWorkouts={completedWorkouts}
-        currentExercises={exercises}
-      />
+      <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
+        <WorkoutHistory workouts={completedWorkouts.slice(0, 5)} />
+      </div>
+      
+      <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
+        <ExerciseProgress 
+          completedWorkouts={completedWorkouts}
+          currentExercises={exercises}
+        />
+      </div>
     </div>
   );
 };

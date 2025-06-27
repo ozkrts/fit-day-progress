@@ -50,7 +50,7 @@ const AddExerciseForm: React.FC<AddExerciseFormProps> = ({ onAdd, onCancel }) =>
   };
 
   return (
-    <Card className="border-blue-200 bg-blue-50">
+    <Card className="border-blue-200 bg-blue-50 shadow-lg">
       <CardContent className="p-4">
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="flex items-center justify-between mb-3">
@@ -60,7 +60,7 @@ const AddExerciseForm: React.FC<AddExerciseFormProps> = ({ onAdd, onCancel }) =>
               variant="ghost"
               size="sm"
               onClick={onCancel}
-              className="text-gray-500 hover:text-gray-700"
+              className="text-gray-500 hover:text-gray-700 transition-colors"
             >
               <X className="w-4 h-4" />
             </Button>
@@ -77,6 +77,7 @@ const AddExerciseForm: React.FC<AddExerciseFormProps> = ({ onAdd, onCancel }) =>
               placeholder="Ex: Supino reto, Agachamento..."
               required
               autoFocus
+              className="transition-colors"
             />
           </div>
 
@@ -89,7 +90,7 @@ const AddExerciseForm: React.FC<AddExerciseFormProps> = ({ onAdd, onCancel }) =>
                 type="number"
                 value={formData.sets}
                 onChange={(e) => handleChange('sets', Number(e.target.value))}
-                className="text-center"
+                className="text-center transition-colors"
                 min="1"
                 required
               />
@@ -102,7 +103,7 @@ const AddExerciseForm: React.FC<AddExerciseFormProps> = ({ onAdd, onCancel }) =>
                 type="number"
                 value={formData.reps}
                 onChange={(e) => handleChange('reps', Number(e.target.value))}
-                className="text-center"
+                className="text-center transition-colors"
                 min="1"
                 required
               />
@@ -115,7 +116,7 @@ const AddExerciseForm: React.FC<AddExerciseFormProps> = ({ onAdd, onCancel }) =>
                 type="number"
                 value={formData.weight}
                 onChange={(e) => handleChange('weight', Number(e.target.value))}
-                className="text-center"
+                className="text-center transition-colors"
                 min="0"
                 step="0.5"
                 required
@@ -131,7 +132,7 @@ const AddExerciseForm: React.FC<AddExerciseFormProps> = ({ onAdd, onCancel }) =>
               value={formData.notes}
               onChange={(e) => handleChange('notes', e.target.value)}
               placeholder="Anotações sobre o exercício..."
-              className="resize-none"
+              className="resize-none transition-colors"
               rows={2}
             />
           </div>
@@ -139,7 +140,7 @@ const AddExerciseForm: React.FC<AddExerciseFormProps> = ({ onAdd, onCancel }) =>
           <div className="flex gap-2">
             <Button
               type="submit"
-              className="flex-1 bg-blue-600 hover:bg-blue-700"
+              className="flex-1 bg-blue-600 hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg"
               disabled={!formData.name.trim()}
             >
               <Plus className="w-4 h-4 mr-2" />
@@ -149,7 +150,7 @@ const AddExerciseForm: React.FC<AddExerciseFormProps> = ({ onAdd, onCancel }) =>
               type="button"
               variant="outline"
               onClick={onCancel}
-              className="px-6"
+              className="px-6 transition-colors hover:bg-gray-50"
             >
               Cancelar
             </Button>
