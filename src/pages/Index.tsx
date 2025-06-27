@@ -1,10 +1,12 @@
-
 import React, { useState, useEffect } from 'react';
-import { Plus, Check } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import ExerciseCard from '@/components/ExerciseCard';
 import AddExerciseForm from '@/components/AddExerciseForm';
+import WorkoutHeader from '@/components/WorkoutHeader';
+import DaySelector from '@/components/DaySelector';
+import WorkoutActions from '@/components/WorkoutActions';
 
 interface Exercise {
   id: number;
@@ -139,33 +141,14 @@ const Index = () => {
 
   return (
     <div className="max-w-md mx-auto space-y-4 bg-gray-50 min-h-screen">
-      {/* Header Info */}
-      <div className="bg-gradient-to-br from-blue-600 to-blue-700 text-white p-6 rounded-lg shadow-lg">
-        <h2 className="text-3xl font-extrabold mb-2">Academia Tracker</h2>
-        <p className="text-blue-100 text-lg">
-          Treino {currentDay} • Próximo: {getNextDay()}
-        </p>
-      </div>
+      <WorkoutHeader currentDay={currentDay} getNextDay={getNextDay} />
 
-      {/* Day Selector */}
-      <div className="flex gap-2">
-        {workoutDays.map(day => (
-          <Button
-            key={day}
-            variant={currentDay === day ? "default" : "outline"}
-            className={`flex-1 transition-colors ${
-              currentDay === day 
-                ? 'bg-blue-600 hover:bg-blue-700 shadow-md' 
-                : 'hover:bg-blue-50 hover:border-blue-300'
-            }`}
-            onClick={() => setCurrentDay(day)}
-          >
-            Treino {day}
-          </Button>
-        ))}
-      </div>
+      <DaySelector 
+        workoutDays={workoutDays}
+        currentDay={currentDay}
+        onDayChange={setCurrentDay}
+      />
 
-      {/* Exercises List */}
       <div className="space-y-3">
         {getCurrentExercises().map(exercise => (
           <ExerciseCard
@@ -177,7 +160,6 @@ const Index = () => {
           />
         ))}
 
-        {/* Add Exercise Dialog */}
         <Dialog open={showAddDialog} onOpenChange={setShowAddDialog}>
           <DialogTrigger asChild>
             <Button
@@ -197,16 +179,11 @@ const Index = () => {
         </Dialog>
       </div>
 
-      {/* Complete Workout Button */}
-      {isWorkoutComplete() && (
-        <Button
-          className="w-full bg-green-600 hover:bg-green-700 text-white h-12 text-lg font-semibold shadow-lg hover:shadow-xl transition-all"
-          onClick={completeWorkout}
-        >
-          <Check className="w-5 h-5 mr-2" />
-          Finalizar Treino {currentDay}
-        </Button>
-      )}
+      <WorkoutActions 
+        isWorkoutComplete={isWorkoutComplete()}
+        currentDay={currentDay}
+        onCompleteWorkout={completeWorkout}
+      />
     </div>
   );
 };
